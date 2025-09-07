@@ -71,6 +71,14 @@ export default defineAppConfig({
           icon: 'lucide:puzzle',
         }],
       }, {
+        title: '小工具',
+        links: [{
+          title: '生產巨集轉換',
+          to: '/tools/craftaction',
+          description: '生產巨集轉換',
+          icon: 'lucide:settings',
+        }],
+      }, {
         title: '外部工具',
         links: [{
           title: '灰機',
