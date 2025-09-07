@@ -204,8 +204,8 @@ const translationData: Record<number, Record<string, string>> = {
   100299: {
     jp: '下地加工',
     en: 'Preparatory Touch',
-    cn: '垫料加工',
-    tw: '墊料加工',
+    cn: '坯料加工',
+    tw: '坯料加工',
   },
   100315: {
     jp: '集中作業',
@@ -249,7 +249,7 @@ const translationData: Record<number, Record<string, string>> = {
     cn: '坚信',
     tw: '堅信',
   },
-  100387: { jp: '真価', en: 'Reflect', cn: '闲静', tw: '閒靜' },
+  100387: { jp: '真価', en: 'Reflect', cn: '闲静', tw: '閑靜' },
   100395: {
     jp: '設計変更',
     en: 'Careful Observation',
@@ -259,8 +259,8 @@ const translationData: Record<number, Record<string, string>> = {
   100403: {
     jp: '下地作業',
     en: 'Groundwork',
-    cn: '垫料制作',
-    tw: '墊料製作',
+    cn: '坯料制作',
+    tw: '坯料製作',
   },
   100411: {
     jp: '上級加工',
