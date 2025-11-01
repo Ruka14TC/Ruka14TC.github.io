@@ -1,0 +1,1 @@
+import{l as o,b as s,o as t,m as r}from"#entry";const n={},c={class:"font-semibold"};function a(e,l){return t(),s("strong",c,[r(e.$slots,"default")])}const f=o(n,[["render",a]]);export{f as default};
