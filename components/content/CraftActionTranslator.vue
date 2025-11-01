@@ -1,12 +1,5 @@
 <template>
   <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-    <!-- 卡片標題 -->
-    <div class="border-b bg-muted/40 px-6 py-4">
-      <h1 class="text-2xl font-semibold tracking-tight">
-        生產巨集轉換
-      </h1>
-    </div>
-
     <!-- 卡片內容 -->
     <div class="p-6 space-y-6">
       <!-- 語言選擇區域 -->
