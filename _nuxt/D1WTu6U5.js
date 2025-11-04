@@ -1,0 +1,1 @@
+import{d as r,b as d,m as e,n as l,o as a}from"./Dx4JnUw2.js";const m=r({__name:"CardGroup",props:{cols:{default:2}},setup(o){return(s,c)=>(a(),d("div",{class:l(["group grid gap-4 [&:not(:first-child)]:mt-5",`${["md:grid-cols-1","md:grid-cols-2","md:grid-cols-3","md:grid-cols-4","md:grid-cols-5","md:grid-cols-6"][o.cols-1]}`])},[e(s.$slots,"default")],2))}});export{m as default};

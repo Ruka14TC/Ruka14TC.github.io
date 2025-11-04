@@ -1,1 +1,0 @@
-import{D as f,E as m}from"#entry";function g(o){const{navigation:i}=f(),r=[],l=o.split(/[/#]/g).filter(e=>e!=="");let t="",n=i.value;if(!n)return[];const{locale:c}=m();for(let e=0;e<l.length;e++){const s=l[e].replace(".html","");t+=`/${s}`;const a=n?.find(u=>u._path===t);n=a?.children,e===0&&s===c.value||r.push({title:a?.title??s,href:t})}return r}export{g as u};

@@ -1,1 +1,0 @@
-import{l as o,b as n,o as t,m as r}from"#entry";const c={},s={class:"inline-code bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono"};function d(e,_){return t(),n("code",s,[r(e.$slots,"default",{},void 0,!0)])}const l=o(c,[["render",d],["__scopeId","data-v-4363b6e9"]]);export{l as default};

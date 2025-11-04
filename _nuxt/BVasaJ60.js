@@ -1,0 +1,1 @@
+import{l as o,b as r,o as s,m as t}from"./Dx4JnUw2.js";const n={};function c(e,a){return s(),r("em",null,[t(e.$slots,"default")])}const f=o(n,[["render",c]]);export{f as default};
