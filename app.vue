@@ -3,7 +3,7 @@
   <LayoutBanner v-if="config.banner.enable" />
   <LayoutHeader />
   <div
-    v-if="page && !page.fullpage && baseRouteName !== 'index'"
+    v-if="!pageConfig.fullpage && baseRouteName !== 'index'"
     class="min-h-screen"
     :class="{ 'border-b': config.footer.border }"
   >
@@ -11,11 +11,11 @@
       class="flex-1 items-start px-4 md:grid md:gap-6 md:px-8 lg:gap-10"
       :class="[
         config.main.padded && 'container',
-        (page.aside ?? true) && 'md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)]',
+        pageConfig.aside && 'md:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[240px_minmax(0,1fr)]',
       ]"
     >
       <aside
-        v-if="page.aside ?? true"
+        v-if="pageConfig.aside"
         class="fixed z-30 -ml-2 hidden w-full shrink-0 overflow-y-auto top-[102px] md:sticky md:block"
         :class="[
           (config.aside.useLevel && config.aside.levelStyle === 'aside') ? 'h-[calc(100vh-3.5rem)] md:top-[61px]' : 'h-[calc(100vh-6rem)] md:top-[101px]',
@@ -35,21 +35,32 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * App 根元件
+ */
 import Toaster from '@/components/ui/toast/Toaster.vue';
 
-const { page } = useContent();
+// 取得設定和路由資訊
 const config = useConfig();
 const route = useRoute();
 const { themeClass, radius } = useThemes();
 
+// 計算基礎路由名稱
 const baseRouteName = computed(() => useRouteBaseName()(route));
 
+const pageConfig = computed(() => ({
+  fullpage: false, // 寫死為 false
+  aside: true, // 預設為 true
+}));
+
+// SEO Meta 設定
 useSeoMeta({
   description: config.value.site.description,
   ogDescription: config.value.site.description,
   twitterCard: 'summary_large_image',
 });
 
+// Head 設定
 useHead({
   bodyAttrs: {
     class: themeClass.value,

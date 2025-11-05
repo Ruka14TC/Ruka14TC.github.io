@@ -4,7 +4,6 @@
       <!-- Right: Back to Top Button -->
       <LayoutBackToTop />
     </div>
-    <LayoutPrevNext />
     <div class="flex">
       <LayoutCarbonAds v-if="!isDesktop && carbonAdsEnabled" class="mx-auto" />
     </div>

@@ -11,7 +11,7 @@
         (config.aside.useLevel && config.aside.levelStyle === 'aside') ? 'h-[calc(100vh-6.5rem)]' : 'h-[calc(100vh-10rem)]',
       ]"
     >
-      <div v-if="toc?.links.length">
+      <div v-if="toc?.links?.length">
         <p class="mb-2 text-base font-semibold">
           {{ $t(title) }}
         </p>
@@ -71,7 +71,7 @@
       />
     </UiCollapsibleTrigger>
     <UiCollapsibleContent>
-      <LayoutTocTree :links="toc.links" :level="0" class="mx-4 mb-3 border-l pl-4 text-sm" />
+      <LayoutTocTree :links="toc?.links || []" :level="0" class="mx-4 mb-3 border-l pl-4 text-sm" />
     </UiCollapsibleContent>
   </UiCollapsible>
 </template>
@@ -80,7 +80,14 @@
 defineProps<{ isSmall: boolean }>();
 const config = useConfig();
 
-const { toc } = useContent();
+// 從 useArticle 取得解析後的文章內容
+const { parsedContent } = useArticle();
+
+// 從 parsedContent 中提取 TOC 資料
+const toc = computed(() => {
+  return parsedContent.value?.toc;
+});
+
 const { localePath } = useI18nDocs();
 const { title, links: configLinks, iconLinks, carbonAds } = useConfig().value.toc;
 
@@ -91,19 +98,8 @@ const carbonAdsEnabled = computed(
 
 const isOpen = ref(false);
 
-const { url, enabledToc, text, icon } = useEditLink();
-
 const links = computed(
   () => {
-    if (enabledToc.value) {
-      return configLinks.concat([{
-        title: text,
-        icon,
-        to: url.value,
-        target: '_blank',
-        showLinkIcon: true,
-      }]);
-    }
     return configLinks;
   },
 );

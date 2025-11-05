@@ -49,16 +49,23 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * Header 元件
+ */
+
+// 取得設定和路由資訊
 const config = useConfig();
 const { i18nEnabled, localePath } = useI18nDocs();
-const { page } = useContent();
+const route = useRoute();
 
+// 計算基礎路由名稱
+const baseRouteName = computed(() => useRouteBaseName()(route));
+
+// 計算是否顯示 TOC
+// 移除 page._path 判斷,改用 route.path
 const showToc = computed(() => {
   return config.value.toc.enable
     && config.value.toc.enableInMobile
-    && (page.value?._path === '/' ? config.value.toc.enableInHomepage : true);
+    && (route.path === '/' ? config.value.toc.enableInHomepage : true);
 });
-
-const route = useRoute();
-const baseRouteName = computed(() => useRouteBaseName()(route));
 </script>

@@ -17,7 +17,7 @@ export default defineI18nConfig(() => ({
       'Start writing content': 'Start writing in {fileLink} to see this page taking shape.',
 
       // TOC
-      'On this page': 'On this page',
+      'On this page': '目錄',
 
       // Search command
       'Light': 'Light',

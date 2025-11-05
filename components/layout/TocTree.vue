@@ -19,6 +19,7 @@
 
 <script setup lang="ts">
 import type { TocLink } from '@ztl-uwu/nuxt-content';
+import { useArticle } from '~/composables/useArticle';
 
 defineProps<{
   links: TocLink[];
@@ -26,13 +27,27 @@ defineProps<{
 }>();
 
 const { activeHeadings, updateHeadings } = useScrollspy();
+const { parsedContent } = useArticle();
 
-onMounted(() =>
-  updateHeadings([
-    ...document.querySelectorAll('.docs-content h1'),
-    ...document.querySelectorAll('.docs-content h2'),
-    ...document.querySelectorAll('.docs-content h3'),
-    ...document.querySelectorAll('.docs-content h4'),
-  ]),
-);
+onMounted(() => {
+  nextTick(() => {
+    updateHeadings([
+      ...document.querySelectorAll('.docs-content h1'),
+      ...document.querySelectorAll('.docs-content h2'),
+      ...document.querySelectorAll('.docs-content h3'),
+      ...document.querySelectorAll('.docs-content h4'),
+    ]);
+  });
+});
+
+watch(parsedContent, () => {
+  nextTick(() => {
+    updateHeadings([
+      ...document.querySelectorAll('.docs-content h1'),
+      ...document.querySelectorAll('.docs-content h2'),
+      ...document.querySelectorAll('.docs-content h3'),
+      ...document.querySelectorAll('.docs-content h4'),
+    ]);
+  });
+});
 </script>

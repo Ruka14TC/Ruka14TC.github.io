@@ -20,9 +20,9 @@
           <template v-if="!input?.length">
             <template v-for="item in navigation" :key="item._path">
               <UiCommandGroup v-if="item.children" :heading="item.title" class="p-1.5">
-                <NuxtLinkLocale v-for="child in item.children" :key="child.id" :to="child._path">
+                <NuxtLinkLocale v-for="child in item.children" :key="child._path" :to="child._path">
                   <UiCommandItem :value="child._path">
-                    <SmartIcon v-if="child.icon" :name="child.icon" class="mr-2 size-4" />
+                    <SmartIcon v-if="getChildIcon(item, child)" :name="getChildIcon(item, child)" class="mr-2 size-4" />
                     <div v-else class="mr-2 size-4" />
                     <span>{{ child.title }}</span>
                   </UiCommandItem>
@@ -78,16 +78,26 @@
 </template>
 
 <script setup lang="ts">
+/**
+ * SearchDialog 元件
+ * 使用選單資料進行搜尋和顯示
+ */
 import { VisuallyHidden } from 'reka-ui';
 
+// 取得設定
 const { darkModeToggle } = useConfig().value.header;
-
-const open = defineModel<boolean>('open');
-const colorMode = useColorMode();
 const { placeholderDetailed } = useConfig().value.search;
 
+// Dialog 開關狀態
+const open = defineModel<boolean>('open');
+
+// 顏色模式
+const colorMode = useColorMode();
+
+// 目前選取的項目索引
 const activeSelect = ref(0);
 
+// 鍵盤快捷鍵 (Cmd/Ctrl + K)
 const { Meta_K, Ctrl_K } = useMagicKeys({
   passive: false,
   onEventFired(e) {
@@ -95,17 +105,21 @@ const { Meta_K, Ctrl_K } = useMagicKeys({
       e.preventDefault();
   },
 });
+
 watch([Meta_K, Ctrl_K], (v) => {
   if (v[0] || v[1])
     open.value = true;
 });
 
+// 搜尋相關狀態
 const input = ref('');
 const searchResult = ref();
 const searchLoading = ref(false);
 
-const { localizeSearchResult } = useI18nDocs();
+// 取得導航資料
+const { localizeSearchResult, navigation } = useI18nDocs();
 
+// 監聽搜尋輸入
 watch(
   input,
   async (v) => {
@@ -121,21 +135,61 @@ watch(
   },
 );
 
+/**
+ * 取得子項目的圖示
+ * 從選單資料中尋找對應的 icon
+ *
+ * @param {any} item - 父選單項目
+ * @param {any} child - 子選單項目
+ * @returns {string | undefined} 圖示名稱
+ */
+function getChildIcon(item: any, child: any) {
+  return child.icon || item.icon;
+}
+
+/**
+ * 取得搜尋結果項目的圖示
+ * 從選單資料中尋找對應路徑的 icon
+ *
+ * @param {string} path - 項目路徑
+ * @returns {string | undefined} 圖示名稱
+ */
+function getItemIcon(path: string) {
+  // 在 navigation 中尋找對應的路徑
+  for (const item of navigation.value) {
+    if (item.children) {
+      for (const child of item.children) {
+        if (child._path === path) {
+          return (child as any).icon || (item as any).icon;
+        }
+      }
+    }
+    if (item._path === path) {
+      return (item as any).icon;
+    }
+  }
+  return undefined;
+}
+
+/**
+ * 高亮顯示搜尋關鍵字
+ *
+ * @param {string} text - 原始文字
+ * @returns {string} 包含 HTML 標記的高亮文字
+ */
 function getHighlightedContent(text: string) {
   return text.replace(input.value, `<span class="font-semibold underline">${input.value}</span>`);
 }
 
-const { navKeyFromPath } = useContentHelpers();
-const { navigation } = useI18nDocs();
-
-function getItemIcon(path: string) {
-  return navKeyFromPath(path, 'icon', navigation.value);
-}
-
+// 監聽選取項目變化,自動捲動到可視範圍
 watch(activeSelect, (value) => {
   document.querySelector(`[id="${value}"]`)?.scrollIntoView({ block: 'nearest' });
 });
 
+/**
+ * 處理 Enter 鍵按下事件
+ * 導航到選取的搜尋結果
+ */
 async function handleEnter() {
   if (searchResult.value[activeSelect.value]?.id) {
     await navigateTo(searchResult.value[activeSelect.value].id);
@@ -143,11 +197,17 @@ async function handleEnter() {
   }
 }
 
+/**
+ * 處理上下方向鍵導航
+ *
+ * @param {-1 | 1} delta - 移動方向 (-1: 上, 1: 下)
+ */
 function handleNavigate(delta: -1 | 1) {
   if (activeSelect.value + delta >= 0 && activeSelect.value + delta < searchResult.value.length)
     activeSelect.value += delta;
 }
 
+// 監聽路由變化,關閉對話框
 const router = useRouter();
 
 watch(

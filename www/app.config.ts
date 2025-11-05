@@ -43,7 +43,7 @@ export default defineAppConfig({
         title: '設定調整',
         links: [{
           title: '系統設置',
-          to: '/setting/system',
+          to: '/setting/1',
           description: '調整畫面、音效',
           icon: 'lucide:settings',
         }, {
@@ -111,7 +111,7 @@ export default defineAppConfig({
       ],
     },
     aside: {
-      useLevel: true,
+      useLevel: false,
       levelStyle: 'aside',
       collapse: false,
       collapseLevel: 1,
@@ -210,9 +210,9 @@ export default defineAppConfig({
     },
     toc: {
       enable: true,
-      enableInMobile: true,
+      enableInMobile: false,
       enableInHomepage: false,
-      title: 'On this page',
+      title: '目錄',
       links: [],
       iconLinks: [],
       carbonAds: {

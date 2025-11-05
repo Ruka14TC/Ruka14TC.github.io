@@ -18,7 +18,6 @@
     "vue",
     "nuxt",
     "documentation-tool",
-    "nuxt-content",
     "shadcn-vue"
   ],
   "main": "./nuxt.config.ts",

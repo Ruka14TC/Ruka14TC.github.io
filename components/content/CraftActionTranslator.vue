@@ -1,5 +1,12 @@
 <template>
   <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+    <!-- 卡片標題 -->
+    <div class="border-b bg-muted/40 px-6 py-4">
+      <h1 class="text-2xl font-semibold tracking-tight">
+        生產巨集轉換
+      </h1>
+    </div>
+
     <!-- 卡片內容 -->
     <div class="p-6 space-y-6">
       <!-- 語言選擇區域 -->
@@ -196,3 +203,42 @@ async function copyToClipboard() {
   }
 }
 </script>
+
+<style scoped>
+/**
+ * shadcn/ui CSS Variables
+ *
+ * 使用 CSS 變數實現 light/dark 主題切換
+ * 這些變數應該在全域樣式中定義
+ *
+ * Light mode:
+ * --background: 0 0% 100%
+ * --foreground: 222.2 84% 4.9%
+ * --card: 0 0% 100%
+ * --card-foreground: 222.2 84% 4.9%
+ * --primary: 222.2 47.4% 11.2%
+ * --primary-foreground: 210 40% 98%
+ * --secondary: 210 40% 96.1%
+ * --secondary-foreground: 222.2 47.4% 11.2%
+ * --muted: 210 40% 96.1%
+ * --muted-foreground: 215.4 16.3% 46.9%
+ * --border: 214.3 31.8% 91.4%
+ * --input: 214.3 31.8% 91.4%
+ * --ring: 222.2 84% 4.9%
+ *
+ * Dark mode:
+ * --background: 222.2 84% 4.9%
+ * --foreground: 210 40% 98%
+ * --card: 222.2 84% 4.9%
+ * --card-foreground: 210 40% 98%
+ * --primary: 210 40% 98%
+ * --primary-foreground: 222.2 47.4% 11.2%
+ * --secondary: 217.2 32.6% 17.5%
+ * --secondary-foreground: 210 40% 98%
+ * --muted: 217.2 32.6% 17.5%
+ * --muted-foreground: 215 20.2% 65.1%
+ * --border: 217.2 32.6% 17.5%
+ * --input: 217.2 32.6% 17.5%
+ * --ring: 212.7 26.8% 83.9%
+ */
+</style>

@@ -45,7 +45,10 @@ export default defineNuxtConfig({
     '~/assets/css/tailwind.css',
   ],
   content: {
-    documentDriven: true,
+    markdown: {
+      mdc: true,
+    },
+    documentDriven: false,
     highlight: {
       theme: {
         default: 'github-light',
@@ -62,8 +65,6 @@ export default defineNuxtConfig({
         'toc',
         'sidebar',
         'collapse',
-        'editLink',
-        'prevNext',
         'breadcrumb',
         'fullpage',
       ],
@@ -101,4 +102,24 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2025-05-13',
+  // 新增 Nitro 設定，用於 SSG 預渲染
+  nitro: {
+    prerender: {
+      // 啟用路由爬取
+      crawlLinks: true,
+      // 預渲染特定路由
+      routes: [
+        '/',
+        // 在這裡列出所有需要預渲染的文章路由
+        // 或使用 routes 函數動態生成
+      ],
+    },
+  },
+
+  // 設定運行時環境變數
+  runtimeConfig: {
+    public: {
+      cmsBaseUrl: 'https://baihunas.synology.me:4443',
+    },
+  },
 });

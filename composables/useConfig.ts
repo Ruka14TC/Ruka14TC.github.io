@@ -1,5 +1,12 @@
+/**
+ * Config Composable
+ */
 import { createDefu } from 'defu';
 
+/**
+ * 自訂 defu 合併函式
+ * 處理字串陣列的特殊合併邏輯
+ */
 const customDefu = createDefu((obj, key, value) => {
   if (Array.isArray(value) && value.every((x: any) => typeof x === 'string')) {
     obj[key] = value;
@@ -7,6 +14,9 @@ const customDefu = createDefu((obj, key, value) => {
   }
 });
 
+/**
+ * 預設設定
+ */
 const defaultConfig: DefaultConfig = {
   site: {
     name: 'Ruka14TC',
@@ -133,10 +143,10 @@ const defaultConfig: DefaultConfig = {
     links: [],
   },
   toc: {
-    enable: true,
+    enable: false,
     enableInMobile: false,
     enableInHomepage: false,
-    title: 'On This Page',
+    title: '目錄',
     links: [],
     iconLinks: [],
     carbonAds: {
@@ -159,57 +169,37 @@ const defaultConfig: DefaultConfig = {
   },
 };
 
+/**
+ * Config Composable
+ *
+ * @returns {ComputedRef} 合併後的設定物件
+ */
 export function useConfig() {
-  const appConfig = computed(() => useAppConfig()?.shadcnDocs || {});
+  // 使用 tryUseNuxtApp 來安全地取得 Nuxt 實例
+  const nuxtApp = tryUseNuxtApp();
 
-  const { navKeyFromPath } = useContentHelpers();
-  const { navigation, page } = useContent();
-  const route = useRoute();
+  // 取得 app.config.ts 中的設定
+  const appConfig = computed(() => {
+    // 如果 Nuxt 實例不存在（例如在預渲染的某些階段），返回空物件
+    if (!nuxtApp) {
+      return {};
+    }
+    return useAppConfig()?.shadcnDocs || {};
+  });
 
-  return computed(
-    () => {
-      const processedConfig = customDefu(appConfig.value, defaultConfig);
-      const header = processedConfig.header;
-      const main = processedConfig.main;
-      const aside = processedConfig.aside;
-      const banner = processedConfig.banner;
-      const footer = processedConfig.footer;
-      const toc = processedConfig.toc;
+  return computed(() => {
+    // 使用 customDefu 合併 appConfig 和 defaultConfig
+    const processedConfig = customDefu(appConfig.value, defaultConfig);
 
-      return {
-        ...appConfig.value,
-        ...processedConfig,
-        header: {
-          ...header,
-          ...navKeyFromPath(route.path, 'header', navigation.value || []),
-          ...page.value?.header,
-        } as (typeof header & DefaultConfig['header']),
-        banner: {
-          ...banner,
-          ...navKeyFromPath(route.path, 'banner', navigation.value || []),
-          ...page.value?.banner,
-        } as (typeof banner & DefaultConfig['banner']),
-        main: {
-          ...main,
-          ...navKeyFromPath(route.path, 'main', navigation.value || []),
-          ...page.value?.main,
-        } as (typeof main & DefaultConfig['main']),
-        aside: {
-          ...aside,
-          ...navKeyFromPath(route.path, 'aside', navigation.value || []),
-          ...page.value?.aside,
-        } as (typeof aside & DefaultConfig['aside']),
-        toc: {
-          ...toc,
-          ...navKeyFromPath(route.path, 'toc', navigation.value || []),
-          ...page.value?.toc,
-        } as (typeof toc & DefaultConfig['toc']),
-        footer: {
-          ...footer,
-          ...navKeyFromPath(route.path, 'footer', navigation.value || []),
-          ...page.value?.footer,
-        } as (typeof footer & DefaultConfig['footer']),
-      };
-    },
-  );
+    return {
+      ...processedConfig,
+      // 直接使用處理後的設定,不再從 navigation 或 page 中覆寫
+      header: processedConfig.header as DefaultConfig['header'],
+      banner: processedConfig.banner as DefaultConfig['banner'],
+      main: processedConfig.main as DefaultConfig['main'],
+      aside: processedConfig.aside as DefaultConfig['aside'],
+      toc: processedConfig.toc as DefaultConfig['toc'],
+      footer: processedConfig.footer as DefaultConfig['footer'],
+    };
+  });
 }
