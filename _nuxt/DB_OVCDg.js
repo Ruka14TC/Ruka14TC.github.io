@@ -1,1 +1,0 @@
-import{l as s,b as t,o,m as r}from"./QIiGddbX.js";const c={},n={class:"leading-7 [&:not(:first-child)]:mt-6"};function a(e,l){return o(),t("p",n,[r(e.$slots,"default")])}const d=s(c,[["render",a]]);export{d as default};

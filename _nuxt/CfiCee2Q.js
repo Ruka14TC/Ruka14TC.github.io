@@ -1,0 +1,1 @@
+import{d as r,b as o,m as n,n as t,g as c,o as d,x as l}from"./CotcsRWt.js";const u=r({__name:"Card",props:{class:{}},setup(s){const e=s;return(a,p)=>(d(),o("div",{class:t(c(l)("rounded-lg border bg-card text-card-foreground shadow-xs",e.class))},[n(a.$slots,"default")],2))}});export{u as _};

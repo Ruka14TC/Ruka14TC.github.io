@@ -1,1 +1,0 @@
-import{l as r,b as t,o,m as s}from"./QIiGddbX.js";const c={},n={class:"even:bg-muted/50 m-0 border-t p-0"};function a(e,l){return o(),t("tr",n,[s(e.$slots,"default")])}const d=r(c,[["render",a]]);export{d as default};
