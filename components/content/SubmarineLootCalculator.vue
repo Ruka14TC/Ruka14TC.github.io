@@ -89,29 +89,25 @@ const lootCategories = [
         id: 'superNecklace',
         name: '上等沈船項鍊',
         price: 34500,
-        image:
-          'https://huiji-public.huijistatic.com/ff14/uploads/3/3f/51f34679964ea8cd9685deefe5930d5e8c0b0076.png',
+        image: 'https://cafemaker.wakingsands.com/i/054000/054947_hr1.png',
       },
       {
         id: 'superEarring',
         name: '上等沈船耳飾',
         price: 30000,
-        image:
-          'https://huiji-public.huijistatic.com/ff14/uploads/b/b5/7b63a24c89baadeba97b4515561112bec749a333.png',
+        image: 'https://cafemaker.wakingsands.com/i/055000/055370_hr1.png',
       },
       {
         id: 'superBracelet',
         name: '上等沈船手鐲',
         price: 28500,
-        image:
-          'https://huiji-public.huijistatic.com/ff14/uploads/f/fd/69bbb4cd6455f0f8c883042525a9528653b08150.png',
+        image: 'https://cafemaker.wakingsands.com/i/055000/055761_hr1.png',
       },
       {
         id: 'superRing',
         name: '上等沈船戒指',
         price: 27000,
-        image:
-          'https://huiji-public.huijistatic.com/ff14/uploads/4/40/7659721be6f4f3e57c19da550c5fda38a62e22cc.png',
+        image: 'https://cafemaker.wakingsands.com/i/054000/054611_hr1.png',
       },
     ],
   },
@@ -125,29 +121,25 @@ const lootCategories = [
         id: 'necklace',
         name: '沈船項鍊',
         price: 13000,
-        image:
-          'https://huiji-public.huijistatic.com/ff14/uploads/d/d3/908b54b61a9b4e0bce74adfddaf2ae3e5120c66b.png',
+        image: 'https://cafemaker.wakingsands.com/i/054000/054948_hr1.png',
       },
       {
         id: 'earring',
         name: '沈船耳飾',
         price: 10000,
-        image:
-          'https://huiji-public.huijistatic.com/ff14/uploads/2/22/433dda1e45ec51ebf0cf765a1392b33317732095.png',
+        image: 'https://cafemaker.wakingsands.com/i/055000/055371_hr1.png',
       },
       {
         id: 'bracelet',
         name: '沈船手鐲',
         price: 9000,
-        image:
-          'https://huiji-public.huijistatic.com/ff14/uploads/c/c3/72d21c3b21bec20424e923e18bf15a2f6af96ac2.png',
+        image: 'https://cafemaker.wakingsands.com/i/055000/055762_hr1.png',
       },
       {
         id: 'ring',
         name: '沈船戒指',
         price: 8000,
-        image:
-          'https://huiji-public.huijistatic.com/ff14/uploads/c/c4/1c6d4fb8f8b25465071ec8f2ee23a247b42f6b36.png',
+        image: 'https://cafemaker.wakingsands.com/i/054000/054612_hr1.png',
       },
     ],
   },
