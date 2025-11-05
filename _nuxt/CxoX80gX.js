@@ -1,0 +1,1 @@
+import{l as s,b as e,o,m as l}from"./QIiGddbX.js";const c={},r={class:"ml-6 list-decimal [&:not(:first-child)]:mt-6 [&:not(:last-child)]:mb-6 [&>li:not(:first-child)]:mt-2"};function n(t,a){return o(),e("ol",r,[l(t.$slots,"default")])}const d=s(c,[["render",n]]);export{d as default};
