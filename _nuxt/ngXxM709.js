@@ -1,1 +1,0 @@
-import{l as s,b as t,o,a,m as l}from"./Bo5Qpu_F.js";const c={},r={class:"w-full overflow-y-auto [&:not(:first-child)]:mt-6 [&:not(:last-child)]:mb-6"},n={class:"w-full"};function d(e,f){return o(),t("div",r,[a("table",n,[l(e.$slots,"default")])])}const i=s(c,[["render",d]]);export{i as default};

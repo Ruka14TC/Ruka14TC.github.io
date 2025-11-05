@@ -1,1 +1,0 @@
-import{l as o,b as n,o as t,m as r}from"./Bo5Qpu_F.js";const c={},s={class:"inline-code bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono"};function a(e,d){return t(),n("code",s,[r(e.$slots,"default",{},void 0,!0)])}const l=o(c,[["render",a],["__scopeId","data-v-2442abb9"]]);export{l as default};
