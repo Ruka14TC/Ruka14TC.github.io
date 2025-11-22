@@ -34,9 +34,6 @@ jobs:
       - name: 產生靜態網站
         run: pnpm run generate
 
-      - name: 查看產出內容
-        run: ls -alh www/.output/public
-
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
