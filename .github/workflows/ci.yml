@@ -17,22 +17,17 @@ jobs:
       - name: 取得原始碼
         uses: actions/checkout@v4
 
-      - name: 安裝 pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: false
-
       - name: 設定 Node.js 環境
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: pnpm
+          cache: npm
 
       - name: 安裝相依套件
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: 產生靜態網站
-        run: pnpm run generate
+        run: npm run generate
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
